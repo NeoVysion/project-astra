@@ -79,18 +79,6 @@ const router = createRouter({
         parent: "MemberList"
       }
     },
-    {
-      path: "/favors",
-      name: "Favors",
-      component: () => import("@/views/favors/List.vue"),
-      meta: {
-        requiresAuth: true,
-        requiresPlevel: 4,
-        onAdminMenu: "Favors",
-        breadcrumbName: () => "Lista Favors",
-        parent: 'Home',
-      }
-    },
   ],
 });
 

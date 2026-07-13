@@ -164,7 +164,7 @@ const handleMenuClick = async (e) => {
 
   :deep(.ant-dropdown-menu-title-content) {
     font-family: "SAMARITAN";
-    background: rgba(33, 33, 33, 0.5);
+    background: rgba(0, 0, 0, 0.9);
     padding: 3px 5px;
   }
 
