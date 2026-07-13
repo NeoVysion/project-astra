@@ -1,0 +1,50 @@
+:root {
+  --primary-grey: #909399;
+  --dark-grey: #606266;
+  --light-grey: #ebe6e1;
+  --shadow-grey: #9d9b9b;
+  --highlight-grey: #e6e6e6;
+  --pale-grey: #f3f3f3;
+
+  --primary-red: #eb0028;
+  --light-red: #ff5a5a;
+  --lighter-red: #c80028;
+  --dark-red: #960028;
+  --highlight-red: #fb1d44;
+  --pale-red: #e5788b;
+
+  --primary-blue: #004691;
+  --dark-blue: #0e4ba1;
+  --lighter-blue: #376ea5;
+  --light-blue: #82b9e6;
+  --highlight-blue: #b8ddfc;
+
+  --primary-green: #00a36c;
+  --dark-green: #09704a;
+  --light-green: #14e598;
+  --highlight-green: #5bffc3;
+  --pale-green: #b4f2ab;
+  --hyper-pale-green: #e1f9dd;
+
+  --orange: #fab932;
+  --dark-orange: #dc8200;
+  --light-orange: #fbd872;
+  --highlight-orange: #ffefbe;
+
+  --violet: #6e69a0;
+  --dark-violet: #642d5f;
+  --light-violet: #aaa5c8;
+
+  --brown: #dcc89b;
+  --dark-brown: #a59173;
+  --light-brown: #fff0c3;
+
+  --aqua: #006e78;
+  --dark-aqua: #005a64;
+  --light-aqua: #73a5a5;
+
+  --title-color: #2c3e50;
+  --white: #ffffff;
+
+  --antd-wave-shadow-color: rgb(124, 124, 124);
+}

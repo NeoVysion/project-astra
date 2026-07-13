@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>ASTRA Buttons</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    background:#050505;
+    font-family:'Share Tech Mono';
+    display:flex;
+    flex-wrap:wrap;
+    gap:25px;
+    padding:60px;
+}
+
+.btn{
+    position:relative;
+    width:240px;
+    height:52px;
+
+    background:rgba(10,10,10,.9);
+
+    color:white;
+    border:none;
+
+    font-size:16px;
+    letter-spacing:1px;
+
+    cursor:pointer;
+    overflow:hidden;
+
+    transition:.35s;
+}
+
+
+/************************************************/
+/* 1 TERMINAL */
+/************************************************/
+
+.b1{
+    border:1px solid #555;
+}
+
+.b1:hover{
+    color:#ff0033;
+    border-color:#ff0033;
+    box-shadow:
+        0 0 10px #ff0033,
+        inset 0 0 10px rgba(255,0,50,.3);
+}
+
+
+/************************************************/
+/* 2 RED BAR */
+/************************************************/
+
+.b2:before{
+    content:'';
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background:#ff002b;
+    transition:.3s;
+}
+
+.b2:hover{
+    background:#0d0d0d;
+    letter-spacing:4px;
+}
+
+.b2:hover:before{
+    width:100%;
+    opacity:.15;
+}
+
+
+/************************************************/
+/* 3 GLITCH */
+/************************************************/
+
+.b3{
+    border:1px solid #444;
+}
+
+.b3:hover{
+    text-shadow:
+        -2px 0 red,
+         2px 0 white;
+
+    transform:translateX(2px);
+}
+
+
+/************************************************/
+/* 4 MACHINE */
+/************************************************/
+
+.b4{
+    border:1px solid #777;
+}
+
+.b4:after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+    repeating-linear-gradient(
+        transparent 0px,
+        transparent 2px,
+        rgba(255,255,255,.03) 3px
+    );
+
+    opacity:0;
+}
+
+.b4:hover:after{
+    opacity:1;
+}
+
+
+/************************************************/
+/* 5 TARGET LOCK */
+/************************************************/
+
+.b5{
+    border:1px solid #555;
+}
+
+.b5:before,
+.b5:after{
+    content:'';
+    position:absolute;
+    width:15px;
+    height:15px;
+    border:1px solid red;
+    transition:.3s;
+}
+
+.b5:before{
+    top:8px;
+    left:8px;
+    border-right:none;
+    border-bottom:none;
+}
+
+.b5:after{
+    right:8px;
+    bottom:8px;
+    border-left:none;
+    border-top:none;
+}
+
+.b5:hover:before{
+    top:0;
+    left:0;
+}
+
+.b5:hover:after{
+    right:0;
+    bottom:0;
+}
+
+
+/************************************************/
+/* 6 WARNING */
+/************************************************/
+
+.b6{
+    border:1px solid #ff0033;
+}
+
+.b6:hover{
+    background:#220008;
+
+    box-shadow:
+    inset 0 0 30px rgba(255,0,0,.25);
+}
+
+
+/************************************************/
+/* 7 PULSE */
+/************************************************/
+
+.b7{
+    border:1px solid #666;
+}
+
+.b7:hover{
+    animation:pulse .8s infinite;
+}
+
+@keyframes pulse{
+
+    0%{
+        box-shadow:0 0 0px red;
+    }
+
+    50%{
+        box-shadow:0 0 18px red;
+    }
+
+    100%{
+        box-shadow:0 0 0px red;
+    }
+
+}
+
+
+/************************************************/
+/* 8 SLIDE */
+/************************************************/
+
+.b8:before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:red;
+
+    transform:translateX(-100%);
+    transition:.35s;
+    opacity:.15;
+}
+
+.b8:hover:before{
+    transform:translateX(0%);
+}
+
+.b8:hover{
+    border-color:red;
+}
+
+
+/************************************************/
+/* 9 SAMARITAN */
+/************************************************/
+
+.b9{
+    border:1px solid #666;
+}
+
+.b9:hover{
+
+    background:
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,0,50,.15),
+        transparent
+    );
+
+    box-shadow:
+    inset 0 0 20px rgba(255,0,50,.3);
+
+}
+
+
+/************************************************/
+/* 10 ADMIN */
+/************************************************/
+
+.b10{
+    border:1px solid #888;
+}
+
+.b10:hover{
+
+    color:#fff;
+
+    border-color:#fff;
+
+    box-shadow:
+        0 0 4px white,
+        0 0 15px rgba(255,255,255,.4);
+
+    transform:scale(1.02);
+}
+
+</style>
+</head>
+<body>
+
+
+<button class="btn b1">DETTAGLIO UTENTE</button>
+<button class="btn b2">DETTAGLIO UTENTE</button>
+<button class="btn b3">DETTAGLIO UTENTE</button>
+<button class="btn b4">DETTAGLIO UTENTE</button>
+<button class="btn b5">DETTAGLIO UTENTE</button>
+
+<button class="btn b6">LOGOUT</button>
+<button class="btn b7">LOGOUT</button>
+<button class="btn b8">LOGOUT</button>
+<button class="btn b9">LOGOUT</button>
+<button class="btn b10">LOGOUT</button>
+
+</body>
+</html>

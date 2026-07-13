@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.S.T.R.A. - Button System Showcase</title>
+    <style>
+        /* Setup del background simile alla tua dashboard */
+        body {
+            background-color: #0a0a0a;
+            background-image: 
+                linear-gradient(rgba(18, 18, 18, 0.95), rgba(18, 18, 18, 0.95)),
+                linear-gradient(to right, #222 1px, transparent 1px),
+                linear-gradient(to bottom, #222 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            color: #ffffff;
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            margin: 0;
+        }
+
+        h2 {
+            color: #ff3333;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+        }
+
+        /* Griglia dei bottoni */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .button-box {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #333;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+
+        .label {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- STILE BASE PER TUTTI I BOTTONI --- */
+        .poi-btn {
+            background: transparent;
+            color: #ffffff;
+            border: none;
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 10px 24px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* =======================================================
+           10 VARIANTI DI BOTTONI E HOVER (STILE SAMARITAN/MACHINE)
+           ======================================================= */
+
+        /* 1. L'INVERSIONE CRUDA (Stile Samaritan Puro) */
+        .btn-samaritan-inverse {
+            border: 1px solid #ffffff;
+            transition: all 0.1s ease; /* Transizione quasi istantanea, molto AI */
+        }
+        .btn-samaritan-inverse:hover {
+            background: #ffffff;
+            color: #000000;
+            font-weight: bold;
+        }
+
+        /* 2. LE STAFE DI TRACCIAMENTO (Targeting Brackets) */
+        .btn-brackets {
+            padding: 10px 20px;
+        }
+        .btn-brackets::before, .btn-brackets::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            border-style: solid;
+            border-color: #ffffff;
+            transition: all 0.2s ease;
+        }
+        .btn-brackets::before { left: 0; border-width: 1px 0 1px 1px; }
+        .btn-brackets::after { right: 0; border-width: 1px 1px 1px 0; }
+        
+        .btn-brackets:hover {
+            color: #ff3333;
+        }
+        .btn-brackets:hover::before, .btn-brackets:hover::after {
+            border-color: #ff3333;
+            width: 12px; /* Le parentesi si stringono sul testo */
+        }
+
+        /* 3. THREAT ASSESSMENT (Allarme Rosso) */
+        .btn-threat {
+            border: 1px solid #ff3333;
+            color: #ff3333;
+        }
+        .btn-threat:hover {
+            background: rgba(255, 51, 51, 0.15);
+            box-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+            text-shadow: 0 0 5px #ff3333;
+        }
+
+        /* 4. SOTTORETE DI SCANSIONE (Expanding Underline) */
+        .btn-underline {
+            border-bottom: 1px solid #333;
+        }
+        .btn-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #ff3333;
+            transition: width 0.25s ease;
+        }
+        .btn-underline:hover {
+            color: #ff3333;
+        }
+        .btn-underline:hover::after {
+            width: 100%;
+        }
+
+        /* 5. GLI ANGOLI DI PUNTAMENTO (Crosshair Corners) */
+        .btn-corners::before, .btn-corners::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-color: #ffffff;
+            border-style: solid;
+            transition: all 0.2s;
+        }
+        /* Top Left e Bottom Right */
+        .btn-corners::before { top: 0; left: 0; border-width: 1px 0 0 1px; }
+        .btn-corners::after { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+        
+        .btn-corners:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        .btn-corners:hover::before { top: -3px; left: -3px; border-color: #ff3333; }
+        .btn-corners:hover::after { bottom: -3px; right: -3px; border-color: #ff3333; }
+
+        /* 6. CURSORE DI TERMINALE ATTIVO (Blinking Prompt) */
+        .btn-terminal::after {
+            content: '_';
+            color: #ff3333;
+            animation: blink 0.8s infinite;
+        }
+        .btn-terminal:hover {
+            background: #111;
+            border: 1px dashed #666;
+            color: #ff3333;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* 7. DOPPIO FRAME (Doppia Linea Militare) */
+        .btn-double-frame {
+            border: 1px solid #fff;
+            outline: 1px solid #fff;
+            outline-offset: -4px;
+        }
+        .btn-double-frame:hover {
+            border-color: #ff3333;
+            outline-color: #ff3333;
+            color: #ff3333;
+            background: rgba(255,33,51,0.05);
+        }
+
+        /* 8. RIEMPIMENTO DATA-FILL (Lateral Wipe) */
+        .btn-wipe {
+            border: 1px solid #ffffff;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-wipe::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: #ff3333;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+        .btn-wipe:hover {
+            color: #000;
+            font-weight: bold;
+            border-color: #ff3333;
+        }
+        .btn-wipe:hover::before {
+            left: 0;
+        }
+
+        /* 9. CAPO GILDA YELLOW (Richiamo al box giallo della tua UI) */
+        .btn-gilda {
+            border: 1px solid #ffcc00;
+            color: #ffcc00;
+        }
+        .btn-gilda:hover {
+            background: #ffcc00;
+            color: #000000;
+            font-weight: bold;
+            box-shadow: 0 0 8px rgba(255, 204, 0, 0.4);
+        }
+
+        /* 10. EFFETTO GLITCH DISCRETO (Spostamento Canali RGB) */
+        .btn-glitch {
+            border: 1px solid #fff;
+        }
+        .btn-glitch:hover {
+            animation: glitch-anim 0.3s linear infinite;
+            border-color: #ff3333;
+            color: #ff3333;
+        }
+        @keyframes glitch-anim {
+            0% { text-shadow: 1px 1px 0 #ff0033, -1px -1px 0 #00ffff; transform: translate(0); }
+            20% { text-shadow: -1px 1px 0 #ff0033, 1px -1px 0 #00ffff; transform: translate(-1px, 1px); }
+            40% { text-shadow: 1px -1px 0 #ff0033, -1px 1px 0 #00ffff; transform: translate(1px, -1px); }
+            60% { text-shadow: -1px -1px 0 #ff0033, 1px 1px 0 #00ffff; transform: translate(-1px, -1px); }
+            80% { text-shadow: 1px 1px 0 #ff0033, -1px -1px 0 #00ffff; transform: translate(1px, 1px); }
+            100% { text-shadow: 0 0 0 #ff0033, 0 0 0 #00ffff; transform: translate(0); }
+        }
+
+        /* SVG Icon styling veloce per i bottoni */
+        .btn-icon {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>A.S.T.R.A. Operative Interface - Buttons</h2>
+
+    <div class="container">
+        
+        <!-- 1 -->
+        <div class="button-box">
+            <div class="label">1. Samaritan Inverse (Consigliato per Logout)</div>
+            <button class="poi-btn btn-samaritan-inverse">
+                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M16 17v-3H9v-4h7V7l5 5-5 5M14 2a2 2 0 0 1 2 2v2h-2V4H5v16h9v-2h2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9z"/></svg>
+                Logout
+            </button>
+        </div>
+
+        <!-- 2 -->
+        <div class="button-box">
+            <div class="label">2. Targeting Brackets (Consigliato per Dettaglio)</div>
+            <button class="poi-btn btn-brackets">
+                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/></svg>
+                Dettaglio Utente
+            </button>
+        </div>
+
+        <!-- 3 -->
+        <div class="button-box">
+            <div class="label">3. Threat Assessment (Allarme Rosso)</div>
+            <button class="poi-btn btn-threat">System Termination</button>
+        </div>
+
+        <!-- 4 -->
+        <div class="button-box">
+            <div class="label">4. Expanding Underline</div>
+            <button class="poi-btn btn-underline">Visualizza Log</button>
+        </div>
+
+        <!-- 5 -->
+        <div class="button-box">
+            <div class="label">5. Crosshair Corners</div>
+            <button class="poi-btn btn-corners">Identifica Soggetto</button>
+        </div>
+
+        <!-- 6 -->
+        <div class="button-box">
+            <div class="label">6. Terminal Blink Prompt</div>
+            <button class="poi-btn btn-terminal">Esegui Override</button>
+        </div>
+
+        <!-- 7 -->
+        <div class="button-box">
+            <div class="label">7. Double Military Frame</div>
+            <button class="poi-btn btn-double-frame">Accesso Sicuro</button>
+        </div>
+
+        <!-- 8 -->
+        <div class="button-box">
+            <div class="label">8. Data-Fill Wipe</div>
+            <button class="poi-btn btn-wipe">Invia Report</button>
+        </div>
+
+        <!-- 9 -->
+        <div class="button-box">
+            <div class="label">9. Capo Gilda Yellow (In tinta con la tua UI)</div>
+            <button class="poi-btn btn-gilda">Gestione Gilda</button>
+        </div>
+
+        <!-- 10 -->
+        <div class="button-box">
+            <div class="label">10. Active Glitch Shifter</div>
+            <button class="poi-btn btn-glitch">Interfaccia Macchina</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
